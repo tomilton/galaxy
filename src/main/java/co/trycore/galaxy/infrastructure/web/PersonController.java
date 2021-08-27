@@ -5,6 +5,8 @@ import co.trycore.galaxy.core.dto.PersonDTO;
 import co.trycore.galaxy.core.dto.ResponseDTO;
 import co.trycore.galaxy.core.exceptions.GalaxyException;
 import co.trycore.galaxy.core.usecases.PersonUseCase;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +16,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping(value = "/api/persona")
+@Api(tags = "Api de personas")
 public class PersonController {
 
     @Autowired
@@ -26,6 +29,7 @@ public class PersonController {
      * @return
      */
     @PostMapping
+    @ApiOperation(value = "Guarda una persona")
     public ResponseEntity<ResponseDTO> save(@RequestBody PersonDTO personDTO) {
         try {
             ResponseDTO responseDTO = this.personUseCase.save(personDTO);
