@@ -31,6 +31,7 @@ public class PersonaRepository implements PersonRepository {
 
     @Override
     public List<Person> listPersons() {
-        return null;
+        List<Persona> personas = personaCrudRepository.getAllPersons();
+        return this.mapper.toPersons(personas);
     }
 }

@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @Setter
 @EqualsAndHashCode
 public class PlanetDTO {
-    private Integer pkPlaneta;
+    private Integer pkplaneta;
     private String nombre;
     private String periodoRotacion;
     private BigDecimal diametro;
@@ -19,8 +19,8 @@ public class PlanetDTO {
     private Integer cantidadPersona;
     private Integer contador;
 
-    public PlanetDTO(Integer pkPlaneta, String nombre, String periodoRotacion, BigDecimal diametro, String clima, String terreno, Integer cantidadPersona, Integer contador) {
-        this.pkPlaneta = pkPlaneta;
+    public PlanetDTO(Integer pkplaneta, String nombre, String periodoRotacion, BigDecimal diametro, String clima, String terreno, Integer cantidadPersona, Integer contador) {
+        this.pkplaneta = pkplaneta;
         this.nombre = nombre;
         this.periodoRotacion = periodoRotacion;
         this.diametro = diametro;

@@ -11,7 +11,7 @@ import java.util.List;
 @Mapper(componentModel = "spring", uses = {PlanetaMapper.class})
 public interface PersonaMapper {
 
-    @Mapping(source = "pkPersona", target = "pkPersona")
+    @Mapping(source = "pkpersona", target = "pkpersona")
     @Mapping(source = "nombre", target = "nombre")
     @Mapping(source = "apellido", target = "apellido")
     @Mapping(source = "edad", target = "edad")

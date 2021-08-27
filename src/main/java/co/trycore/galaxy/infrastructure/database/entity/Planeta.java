@@ -31,7 +31,7 @@ public class Planeta implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "pk_planeta")
-    private Integer pkPlaneta;
+    private Integer pkplaneta;
 
     @Column(name = "nombre")
     private String nombre;
