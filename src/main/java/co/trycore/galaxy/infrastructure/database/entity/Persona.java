@@ -33,7 +33,7 @@ public class Persona implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Basic(optional = false)
     @Column(name = "pk_persona")
-    private Integer pkPersona;
+    private Integer pkpersona;
     @Column(name = "nombre")
     private String nombre;
 
@@ -53,8 +53,9 @@ public class Persona implements Serializable {
     private Date fechaNacimiento;
     @Column(name = "contador")
     private Integer contador;
-    @JoinColumn(name = "fk_planeta", referencedColumnName = "pk_planeta")
+
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_planeta")
     private Planeta planeta;
 
 }

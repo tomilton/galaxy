@@ -11,7 +11,7 @@ import java.math.BigDecimal;
 @EqualsAndHashCode
 public class PersonDTO {
 
-    private Integer pkPersona;
+    private Integer pkpersona;
     private String nombre;
     private String apellido;
     private Integer edad;
@@ -22,8 +22,8 @@ public class PersonDTO {
     private Integer contador;
     private PlanetDTO planeta;
 
-    public PersonDTO(Integer pkPersona, String nombre, String apellido, Integer edad, BigDecimal altura, BigDecimal peso, String genero, String fechaNacimiento, Integer contador, PlanetDTO planeta) {
-        this.pkPersona = pkPersona;
+    public PersonDTO(Integer pkpersona, String nombre, String apellido, Integer edad, BigDecimal altura, BigDecimal peso, String genero, String fechaNacimiento, Integer contador, PlanetDTO planeta) {
+        this.pkpersona = pkpersona;
         this.nombre = nombre;
         this.apellido = apellido;
         this.edad = edad;

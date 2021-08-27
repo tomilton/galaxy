@@ -1,18 +1,22 @@
 package co.trycore.galaxy.core.domain;
 
-import co.trycore.galaxy.infrastructure.database.entity.Planeta;
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import co.trycore.galaxy.core.common.constants.Constants;
+import co.trycore.galaxy.core.common.util.UtilityDate;
+import co.trycore.galaxy.core.common.util.UtilityString;
+import co.trycore.galaxy.core.exceptions.FechaException;
+import co.trycore.galaxy.core.exceptions.GalaxyException;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 public class Person {
 
-    private Integer pkPersona;
+    private Integer pkpersona;
     private String nombre;
     private String apellido;
     private Integer edad;
@@ -23,16 +27,18 @@ public class Person {
     private Integer contador;
     private Planet planeta;
 
-    public Person(Integer pkPersona, String nombre, String apellido, Integer edad, BigDecimal altura, BigDecimal peso, String genero, String fechaNacimiento, Integer contador, Planet planeta) {
-        this.pkPersona = pkPersona;
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.edad = edad;
-        this.altura = altura;
-        this.peso = peso;
-        this.genero = genero;
-        this.fechaNacimiento = fechaNacimiento;
-        this.contador = contador;
-        this.planeta = planeta;
+    public void validarNombre() throws GalaxyException {
+        if (UtilityString.cadenaVacia(nombre)) {
+            throw new GalaxyException("Nombre de persona requerido");
+        }
     }
+
+    public void validarFechaNacimiento() throws FechaException {
+        Integer year = UtilityDate.getYearFromDate(this.fechaNacimiento, 1);
+        if (!UtilityDate.isDate(this.fechaNacimiento) || year == null || year < Constants.MIN_YEAR || year > Constants.MAX_YEAR) {
+            throw new FechaException("Formato de fecha de nacimiento incorrecto");
+        }
+    }
+
+
 }

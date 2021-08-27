@@ -1,16 +1,18 @@
 package co.trycore.galaxy.core.domain;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
+import co.trycore.galaxy.core.common.util.UtilityString;
+import co.trycore.galaxy.core.exceptions.GalaxyException;
+import lombok.*;
 
 import java.math.BigDecimal;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 @EqualsAndHashCode
 public class Planet {
-    private Integer pkPlaneta;
+    private Integer pkplaneta;
     private String nombre;
     private String periodoRotacion;
     private BigDecimal diametro;
@@ -19,14 +21,10 @@ public class Planet {
     private Integer cantidadPersona;
     private Integer contador;
 
-    public Planet(Integer pkPlaneta, String nombre, String periodoRotacion, BigDecimal diametro, String clima, String terreno, Integer cantidadPersona, Integer contador) {
-        this.pkPlaneta = pkPlaneta;
-        this.nombre = nombre;
-        this.periodoRotacion = periodoRotacion;
-        this.diametro = diametro;
-        this.clima = clima;
-        this.terreno = terreno;
-        this.cantidadPersona = cantidadPersona;
-        this.contador = contador;
+    public void validarNombre() throws GalaxyException {
+        if (UtilityString.cadenaVacia(nombre)) {
+            throw new GalaxyException("Nombre de planeta requerido");
+        }
     }
+
 }

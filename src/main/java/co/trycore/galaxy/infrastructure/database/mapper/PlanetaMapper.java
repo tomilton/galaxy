@@ -10,7 +10,7 @@ import org.mapstruct.Mappings;
 @Mapper(componentModel = "spring")
 public interface PlanetaMapper {
     @Mappings({
-            @Mapping(source = "pkPlaneta", target = "pkPlaneta"),
+            @Mapping(source = "pkplaneta", target = "pkplaneta"),
             @Mapping(source = "periodoRotacion", target = "periodoRotacion"),
             @Mapping(source = "diametro", target = "diametro"),
             @Mapping(source = "clima", target = "clima"),
