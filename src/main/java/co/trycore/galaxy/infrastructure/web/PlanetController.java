@@ -1,6 +1,5 @@
 package co.trycore.galaxy.infrastructure.web;
 
-import co.trycore.galaxy.core.dto.PersonDTO;
 import co.trycore.galaxy.core.dto.PlanetDTO;
 import co.trycore.galaxy.core.dto.ResponseDTO;
 import co.trycore.galaxy.core.exceptions.GalaxyException;
