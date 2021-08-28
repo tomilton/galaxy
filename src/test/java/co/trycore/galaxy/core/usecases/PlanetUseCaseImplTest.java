@@ -2,10 +2,9 @@ package co.trycore.galaxy.core.usecases;
 
 import co.trycore.galaxy.core.domain.Person;
 import co.trycore.galaxy.core.domain.Planet;
-import co.trycore.galaxy.core.dto.PersonDTO;
 import co.trycore.galaxy.core.dto.PlanetDTO;
 import co.trycore.galaxy.core.dto.ResponseDTO;
-import co.trycore.galaxy.core.gateway.PersonRepository;
+import co.trycore.galaxy.core.gateway.PlanetRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,27 +18,26 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
-class PersonUseCaseImplTest {
+class PlanetUseCaseImplTest {
 
     // @Mock
     @MockBean
-    PersonRepository personRepository;
+    PlanetRepository planetRepository;
 
     // @InjectMocks
     @Autowired
-    PersonUseCase personUseCase;
+    PlanetUseCase planetUseCase;
 
     @Test
     void testSave() {
+
         Planet planet = new Planet(1, "TIERRA", "2 AÑOS", BigDecimal.TEN, "NUBLADO", "PLANO", 12, 2);
-        Person person = new Person(null, "Milton", "Sanchez", 31, BigDecimal.ONE, BigDecimal.TEN, "M", "18/05/1990", 0, planet);
 
         PlanetDTO planetDTO = new PlanetDTO(1, "TIERRA", "2 AÑOS", BigDecimal.TEN, "NUBLADO", "PLANO", 12, 2);
-        PersonDTO personDTO = new PersonDTO(null, "Milton", "Sanchez", 31, BigDecimal.ONE, BigDecimal.TEN, "M", "18/05/1990", 0, planetDTO);
 
-        when(personRepository.save(any(Person.class))).thenReturn(person);
+        when(planetRepository.save(any(Planet.class))).thenReturn(planet);
 
-        ResponseDTO responseDTO = personUseCase.save(personDTO);
+        ResponseDTO responseDTO = planetUseCase.save(planetDTO);
 
         assertNotNull(responseDTO.getRespuesta());
 
@@ -47,7 +45,8 @@ class PersonUseCaseImplTest {
 
         assertEquals(expected, responseDTO.getExito());
 
-        verify(personRepository).save(any(Person.class));
+        verify(planetRepository).save(any(Planet.class));
+
     }
 
 
