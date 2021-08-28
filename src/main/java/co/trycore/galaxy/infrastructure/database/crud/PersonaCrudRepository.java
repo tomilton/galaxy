@@ -10,7 +10,10 @@ import java.util.List;
 
 public interface PersonaCrudRepository extends JpaRepository<Persona, Integer> {
 
-    @Query("SELECT p FROM Persona p JOIN FETCH p.planeta pl ")
+    @Query("SELECT p FROM Persona p JOIN FETCH p.planeta pl")
     List<Persona> getAllPersons();
-    
+
+    @Query("SELECT p FROM Persona p WHERE p.pkpersona = ?1")
+    Persona getPersonByPk(Integer pkpersona);
+
 }

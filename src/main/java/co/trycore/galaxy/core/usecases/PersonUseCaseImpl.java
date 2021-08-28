@@ -1,5 +1,6 @@
 package co.trycore.galaxy.core.usecases;
 
+import co.trycore.galaxy.core.common.constants.Constants;
 import co.trycore.galaxy.core.domain.Person;
 import co.trycore.galaxy.core.domain.Planet;
 import co.trycore.galaxy.core.dto.PersonDTO;
@@ -36,7 +37,7 @@ public class PersonUseCaseImpl implements PersonUseCase {
             person.validarFechaNacimiento();
             planet.validarNombre();
             personRepository.save(person);
-            return new ResponseDTO("Registro exitoso", Boolean.TRUE);
+            return new ResponseDTO(Constants.REGISTRO_EXITOSO, Boolean.TRUE, person);
         } catch (GalaxyException runtimeException) {
             throw runtimeException;
         } catch (Exception exception) {
@@ -49,6 +50,19 @@ public class PersonUseCaseImpl implements PersonUseCase {
     public List<PersonDTO> listPersons() {
         List<Person> personList = this.personRepository.listPersons();
         return this.personDTOMapper.toPersonsDTO(personList);
+    }
+
+    @Transactional
+    @Override
+    public ResponseDTO sumarVisita(Integer pkpersona) {
+        try {
+            final Person person = this.personRepository.getPersonByPk(pkpersona);
+            person.sumarVisita(Constants.INCREMENTO_VISITA_PERSONA);
+            this.personRepository.edit(person);
+            return new ResponseDTO(Constants.REGISTRO_EXITOSO, Boolean.TRUE, person.getContador());
+        } catch (Exception exception) {
+            throw new GalaxyException(exception.getMessage(), exception);
+        }
     }
 
 

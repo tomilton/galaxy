@@ -21,7 +21,7 @@ public interface PersonaMapper {
     @Mapping(source = "fechaNacimiento", target = "fechaNacimiento", dateFormat = "dd/MM/yyyy")
     @Mapping(source = "contador", target = "contador")
     @Mapping(source = "planeta", target = "planeta")
-    Person toPayment(Persona persona);
+    Person toPerson(Persona persona);
 
     List<Person> toPersons(List<Persona> personas);
 

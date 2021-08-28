@@ -45,7 +45,7 @@ class PersonControllerTest {
     @Test
     void testSave() throws Exception {
 
-        when(personUseCase.save(any())).thenReturn(new ResponseDTO("Registro exitoso", Boolean.TRUE));
+        when(personUseCase.save(any())).thenReturn(new ResponseDTO("Registro exitoso", Boolean.TRUE, ""));
 
         // Given
         PlanetDTO planetDTO = new PlanetDTO(1, "TIERRA", "2 AÑOS", BigDecimal.TEN, "NUBLADO", "PLANO", 12, 2);

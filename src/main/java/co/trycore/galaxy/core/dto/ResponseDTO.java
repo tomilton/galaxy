@@ -14,4 +14,5 @@ import lombok.*;
 public class ResponseDTO {
     private String respuesta;
     private Boolean exito;
+    private Object any;
 }

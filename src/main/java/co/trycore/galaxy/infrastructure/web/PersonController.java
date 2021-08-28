@@ -17,6 +17,7 @@ import java.util.List;
 @RestController
 @RequestMapping(value = "/api/persona")
 @Api(tags = "Api de personas")
+@CrossOrigin(origins = "*")
 public class PersonController {
 
     @Autowired
@@ -35,7 +36,7 @@ public class PersonController {
             ResponseDTO responseDTO = this.personUseCase.save(personDTO);
             return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
         } catch (GalaxyException exception) {
-            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseDTO(exception.getMessage(), Boolean.FALSE));
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseDTO(exception.getMessage(), Boolean.FALSE, ""));
         }
     }
 
@@ -48,5 +49,16 @@ public class PersonController {
         return ResponseEntity.ok(this.personUseCase.listPersons());
     }
 
+
+    @GetMapping("/sumarVisita")
+    @ApiOperation(value = "Suma una visita a la persona")
+    public ResponseEntity<ResponseDTO> sumarVisita(@RequestParam(name = "pkpersona") Integer pkpersona) {
+        try {
+            ResponseDTO responseDTO = this.personUseCase.sumarVisita(pkpersona);
+            return ResponseEntity.status(HttpStatus.OK).body(responseDTO);
+        } catch (GalaxyException exception) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseDTO(exception.getMessage(), Boolean.FALSE, ""));
+        }
+    }
 
 }
