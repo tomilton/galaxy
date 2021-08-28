@@ -7,6 +7,7 @@ import co.trycore.galaxy.core.dto.PersonDTO;
 import co.trycore.galaxy.core.dto.ResponseDTO;
 import co.trycore.galaxy.core.exceptions.GalaxyException;
 import co.trycore.galaxy.core.gateway.PersonRepository;
+import co.trycore.galaxy.core.gateway.PlanetRepository;
 import co.trycore.galaxy.core.mapper.PersonDTOMapper;
 import co.trycore.galaxy.core.mapper.PlanetDTOMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,10 +21,11 @@ public class PersonUseCaseImpl implements PersonUseCase {
 
     @Autowired
     private PersonRepository personRepository;
+    @Autowired
+    private PlanetRepository planetRepository;
 
     @Autowired
     private PersonDTOMapper personDTOMapper;
-
     @Autowired
     private PlanetDTOMapper planetDTOMapper;
 
@@ -57,8 +59,11 @@ public class PersonUseCaseImpl implements PersonUseCase {
     public ResponseDTO sumarVisita(Integer pkpersona) {
         try {
             final Person person = this.personRepository.getPersonByPk(pkpersona);
+            final Planet planet = this.planetRepository.getPlanetByPk(person.getPlaneta().getPkplaneta());
             person.sumarVisita(Constants.INCREMENTO_VISITA_PERSONA);
+            planet.sumarVisita(Constants.INCREMENTO_VISITA_PLANETA);
             this.personRepository.edit(person);
+            this.planetRepository.edit(planet);
             return new ResponseDTO(Constants.REGISTRO_EXITOSO, Boolean.TRUE, person.getContador());
         } catch (Exception exception) {
             throw new GalaxyException(exception.getMessage(), exception);

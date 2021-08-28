@@ -16,7 +16,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
- * @author Usuario
+ * @author Milton
  */
 @Getter
 @Setter
@@ -52,6 +52,6 @@ public class Planeta implements Serializable {
     @Column(name = "contador")
     private Integer contador;
     @OneToMany(mappedBy = "planeta", fetch = FetchType.LAZY)
-    private List<Persona> personaList;
+    private List<Persona> personas;
 }
 
