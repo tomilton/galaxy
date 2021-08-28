@@ -12,4 +12,6 @@ public interface PersonUseCase {
 
     List<PersonDTO> listPersons();
 
+    ResponseDTO sumarVisita(Integer pkpersona);
+
 }

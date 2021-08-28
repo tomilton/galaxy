@@ -21,17 +21,24 @@ public class PersonaRepository implements PersonRepository {
     @Override
     public Person save(Person person) {
         Persona persona = mapper.toPersona(person);
-        return mapper.toPayment(this.personaCrudRepository.save(persona));
+        return mapper.toPerson(this.personaCrudRepository.save(persona));
     }
 
     @Override
     public Person edit(Person person) {
-        return null;
+        Persona persona = mapper.toPersona(person);
+        return mapper.toPerson(this.personaCrudRepository.save(persona));
     }
 
     @Override
     public List<Person> listPersons() {
         List<Persona> personas = personaCrudRepository.getAllPersons();
         return this.mapper.toPersons(personas);
+    }
+
+    @Override
+    public Person getPersonByPk(Integer pkpersona) {
+        Persona persona = personaCrudRepository.getPersonByPk(pkpersona);
+        return this.mapper.toPerson(persona);
     }
 }
