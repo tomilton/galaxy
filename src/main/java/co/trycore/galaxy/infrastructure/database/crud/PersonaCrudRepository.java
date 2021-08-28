@@ -16,4 +16,7 @@ public interface PersonaCrudRepository extends JpaRepository<Persona, Integer> {
     @Query("SELECT p FROM Persona p WHERE p.pkpersona = ?1")
     Persona getPersonByPk(Integer pkpersona);
 
+    @Query("SELECT p FROM Persona p JOIN FETCH p.planeta pl WHERE pl.pkplaneta = ?1")
+    List<Persona> getPersonsByPlanet(Integer pkplaneta);
+
 }

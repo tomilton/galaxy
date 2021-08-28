@@ -70,5 +70,12 @@ public class PersonUseCaseImpl implements PersonUseCase {
         }
     }
 
+    @Transactional(readOnly = true)
+    @Override
+    public List<PersonDTO> getPersonsByPlaneta(Integer pkplaneta) {
+        List<Person> personList = this.personRepository.getPersonsByPlaneta(pkplaneta);
+        return this.personDTOMapper.toPersonsDTO(personList);
+    }
+
 
 }

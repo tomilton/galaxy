@@ -41,4 +41,10 @@ public class PersonaRepository implements PersonRepository {
         Persona persona = personaCrudRepository.getPersonByPk(pkpersona);
         return this.mapper.toPerson(persona);
     }
+
+    @Override
+    public List<Person> getPersonsByPlaneta(Integer pkplaneta) {
+        List<Persona> personas = personaCrudRepository.getPersonsByPlanet(pkplaneta);
+        return this.mapper.toPersons(personas);
+    }
 }

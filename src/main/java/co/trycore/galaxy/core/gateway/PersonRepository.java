@@ -14,4 +14,5 @@ public interface PersonRepository {
 
     Person getPersonByPk(Integer pkpersona);
 
+    List<Person> getPersonsByPlaneta(Integer pkplaneta);
 }
