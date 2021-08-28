@@ -7,6 +7,8 @@ import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
 
+import java.util.List;
+
 @Mapper(componentModel = "spring")
 public interface PlanetaMapper {
     @Mappings({
@@ -18,9 +20,11 @@ public interface PlanetaMapper {
             @Mapping(source = "cantidadPersona", target = "cantidadPersona"),
             @Mapping(source = "contador", target = "contador"),
     })
-    Planet toCategory(Planeta planeta);
+    Planet toPlanet(Planeta planeta);
+
+    List<Planet> toPlanets(List<Planeta> planetas);
 
     @InheritInverseConfiguration
-    @Mapping(target = "personaList", ignore = true)
+    @Mapping(target = "personas", ignore = true)
     Planeta toPlaneta(Planet planet);
 }

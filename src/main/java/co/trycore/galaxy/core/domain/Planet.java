@@ -27,4 +27,15 @@ public class Planet {
         }
     }
 
+    public void sumarVisita(Integer valor) {
+        if (valor <= 0) {
+            throw new GalaxyException("El valor debe ser mayor de cero");
+        }
+        if (this.contador == null) {
+            this.contador = 0;
+        }
+        Integer nuevoConteo = this.contador + valor;
+        this.contador = nuevoConteo;
+    }
+
 }

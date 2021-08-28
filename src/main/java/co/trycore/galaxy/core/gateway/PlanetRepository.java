@@ -12,4 +12,6 @@ public interface PlanetRepository {
 
     List<Planet> listPlanets();
 
+    Planet getPlanetByPk(Integer pkplanet);
+
 }

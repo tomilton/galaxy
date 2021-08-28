@@ -22,7 +22,7 @@ public interface PlanetDTOMapper {
     @Mapping(source = "contador", target = "contador")
     PlanetDTO toPersonDTO(Planet planet);
 
-    List<PlanetDTO> toPersonsDTO(List<Planet> planets);
+    List<PlanetDTO> toPlanetsDTO(List<Planet> planets);
 
     @InheritInverseConfiguration
     Planet toPlanet(PlanetDTO planetDTO);
