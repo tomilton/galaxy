@@ -50,6 +50,10 @@ public class PersonController {
     }
 
 
+    /**
+     * @param pkpersona
+     * @return
+     */
     @GetMapping("/sumarVisita")
     @ApiOperation(value = "Suma una visita a la persona")
     public ResponseEntity<ResponseDTO> sumarVisita(@RequestParam(name = "pkpersona") Integer pkpersona) {
@@ -59,6 +63,15 @@ public class PersonController {
         } catch (GalaxyException exception) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseDTO(exception.getMessage(), Boolean.FALSE, ""));
         }
+    }
+
+    /**
+     * @param pkplaneta
+     * @return
+     */
+    @GetMapping("/personsByPlaneta")
+    public ResponseEntity<List<PersonDTO>> getPersonsByPlaneta(@RequestParam(name = "pkplaneta") Integer pkplaneta) {
+        return ResponseEntity.ok(this.personUseCase.getPersonsByPlaneta(pkplaneta));
     }
 
 }
