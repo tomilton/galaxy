@@ -14,5 +14,6 @@ public interface PlanetUseCase {
 
     ResponseDTO sumarVisita(Integer pkplaneta);
 
+    List<PlanetDTO> getPlanetasMasVisitados(int top);
 
 }

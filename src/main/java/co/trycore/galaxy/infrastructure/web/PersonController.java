@@ -45,6 +45,7 @@ public class PersonController {
      * @author Milton Sanchez
      */
     @GetMapping
+    @ApiOperation(value = "Retorna todas las personas")
     public ResponseEntity<List<PersonDTO>> listPersons() {
         return ResponseEntity.ok(this.personUseCase.listPersons());
     }
@@ -70,6 +71,7 @@ public class PersonController {
      * @return
      */
     @GetMapping("/personsByPlaneta")
+    @ApiOperation(value = "Retorna todas las personas de un determinado planeta")
     public ResponseEntity<List<PersonDTO>> getPersonsByPlaneta(@RequestParam(name = "pkplaneta") Integer pkplaneta) {
         return ResponseEntity.ok(this.personUseCase.getPersonsByPlaneta(pkplaneta));
     }
