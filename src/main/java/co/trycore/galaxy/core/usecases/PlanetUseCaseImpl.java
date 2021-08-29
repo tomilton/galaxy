@@ -56,4 +56,10 @@ public class PlanetUseCaseImpl implements PlanetUseCase {
             throw new GalaxyException(exception.getMessage(), exception);
         }
     }
+
+    @Override
+    public List<PlanetDTO> getPlanetasMasVisitados(int top) {
+        List<Planet> personList = this.planetRepository.getPlanetasMasVisitados(top);
+        return this.planetDTOMapper.toPlanetsDTO(personList);
+    }
 }

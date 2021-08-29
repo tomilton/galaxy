@@ -45,6 +45,7 @@ public class PlanetController {
      * @author Milton Sanchez
      */
     @GetMapping
+    @ApiOperation(value = "Retorna todos los planetas")
     public ResponseEntity<List<PlanetDTO>> listPlanets() {
         return ResponseEntity.ok(this.planetUseCase.listPlanets());
     }
@@ -59,6 +60,16 @@ public class PlanetController {
         } catch (GalaxyException exception) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(new ResponseDTO(exception.getMessage(), Boolean.FALSE, ""));
         }
+    }
+
+    /**
+     * @return planetas
+     * @author Milton Sanchez
+     */
+    @GetMapping("/planetasMasVisitados")
+    @ApiOperation(value = "Retorna el top de planetas con mas visitas")
+    public ResponseEntity<List<PlanetDTO>> getPlanetasMasVisitados(@RequestParam(name = "top") int top) {
+        return ResponseEntity.ok(this.planetUseCase.getPlanetasMasVisitados(top));
     }
 
 

@@ -4,6 +4,7 @@ import co.trycore.galaxy.core.domain.Planet;
 import co.trycore.galaxy.core.gateway.PlanetRepository;
 
 import co.trycore.galaxy.infrastructure.database.crud.PlanetaCrudRepository;
+import co.trycore.galaxy.infrastructure.database.crud.PlanetaJpaRepository;
 import co.trycore.galaxy.infrastructure.database.entity.Planeta;
 import co.trycore.galaxy.infrastructure.database.mapper.PlanetaMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,8 @@ public class PlanetaRepository implements PlanetRepository {
 
     @Autowired
     private PlanetaCrudRepository planetaCrudRepository;
+    @Autowired
+    private PlanetaJpaRepository planetaJpaRepository;
     @Autowired
     private PlanetaMapper mapper;
 
@@ -41,5 +44,11 @@ public class PlanetaRepository implements PlanetRepository {
     public Planet getPlanetByPk(Integer pkplanet) {
         Planeta planeta = planetaCrudRepository.getPlanetaByPk(pkplanet);
         return this.mapper.toPlanet(planeta);
+    }
+
+    @Override
+    public List<Planet> getPlanetasMasVisitados(int top) {
+        List<Planeta> planetas = planetaJpaRepository.getPlanetasMasVisitados(top);
+        return this.mapper.toPlanets(planetas);
     }
 }

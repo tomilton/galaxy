@@ -14,4 +14,6 @@ public interface PlanetRepository {
 
     Planet getPlanetByPk(Integer pkplanet);
 
+    List<Planet> getPlanetasMasVisitados(int top);
+
 }
