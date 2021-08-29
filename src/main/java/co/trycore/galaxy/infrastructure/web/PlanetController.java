@@ -30,7 +30,7 @@ public class PlanetController {
      * @return
      */
     @PostMapping
-    @ApiOperation(value = "Guarda una persona")
+    @ApiOperation(value = "Guarda un planeta")
     public ResponseEntity<ResponseDTO> save(@RequestBody PlanetDTO planetDTO) {
         try {
             ResponseDTO responseDTO = this.planetUseCase.save(planetDTO);
@@ -52,7 +52,7 @@ public class PlanetController {
 
 
     @GetMapping("/sumarVisita")
-    @ApiOperation(value = "Suma una visita a la persona")
+    @ApiOperation(value = "Suma una visita al planeta")
     public ResponseEntity<ResponseDTO> sumarVisita(@RequestParam(name = "pkplaneta") Integer pkplaneta) {
         try {
             ResponseDTO responseDTO = this.planetUseCase.sumarVisita(pkplaneta);
