@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class PlanetUseCaseImpl implements PlanetUseCase {
@@ -59,7 +60,10 @@ public class PlanetUseCaseImpl implements PlanetUseCase {
 
     @Override
     public List<PlanetDTO> getPlanetasMasVisitados(int top) {
-        List<Planet> personList = this.planetRepository.getPlanetasMasVisitados(top);
+        List<Planet> personList = this.planetRepository.getPlanetasMasVisitados(top)
+                .stream()
+                .filter(planeta -> planeta.getContador() != null && planeta.getContador() > 0)
+                .collect(Collectors.toList());
         return this.planetDTOMapper.toPlanetsDTO(personList);
     }
 }
